@@ -6,8 +6,8 @@ from sklearn.metrics import RocCurveDisplay, ConfusionMatrixDisplay
 from torch import nn, optim
 from torch.utils.data import DataLoader
 
-from local_traniner.model.core.dataset import CovidDataSet
-from local_traniner.model.core.model import DRE_net
+from core.dataset import CovidDataSet
+from core.model import DRE_net
 
 model_path = 'DRE-Net.pth'
 
