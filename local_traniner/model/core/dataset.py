@@ -1,19 +1,22 @@
 import os
-from PIL import Image
-import torchvision
-from torchvision import transforms
 import random
+
+import torchvision
+from PIL import Image
+from torchvision import transforms
+
 random.seed(0)
 
-class CustomDataset(torchvision.datasets.VisionDataset):
+
+class CovidDataSet(torchvision.datasets.VisionDataset):
     def __init__(self, root, is_train=True):
-        super(CustomDataset, self).__init__(root, transforms=None)
+        super(CovidDataSet, self).__init__(root, transforms=None)
         self.is_train = is_train
+
         self.file_lst, self.label_lst = [], []
         for label, folder in enumerate(['no_nCoV', 'nCoV']):
             path = os.path.join(root, folder)
             files = os.listdir(path)
-            
             self.file_lst.extend(os.path.join(path, file) for file in files)
             self.label_lst.extend([label] * len(files))
 

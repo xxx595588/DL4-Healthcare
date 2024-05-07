@@ -1,16 +1,16 @@
-from torch import nn
 import torch
-import numpy as np
-import torchvision
-from torchvision.models import ResNet50_Weights
 import torch.nn.functional as F
+from torch import nn
+from torchvision.models import ResNet50_Weights
+from torchvision.models.detection.backbone_utils import resnet_fpn_backbone
+
 
 class DRE_net(nn.Module):
     def __init__(self, n_class):
         super(DRE_net, self).__init__()
         self.n_class = n_class
 
-        self.backbone = torchvision.models.detection.backbone_utils.resnet_fpn_backbone(backbone_name='resnet50', weights=ResNet50_Weights.DEFAULT)
+        self.backbone = resnet_fpn_backbone(backbone_name='resnet50', weights=ResNet50_Weights.DEFAULT)
         in_channels_list = [256, 256, 256, 256, 256]
 
         self.prediction_layers = nn.ModuleDict({
